@@ -1,0 +1,47 @@
+[
+  {
+    "id": "g001",
+    "title": "벚꽃 내리는 시대에 결투를",
+    "titleEn": "Sakura Arms",
+    "imageUrl": "/images/Sakura-Arms.jpg",
+    "location": "A-1",
+    "minPlayers": 2,
+    "maxPlayers": 2,
+    "playtimeMin": 15,
+    "playtimeMax": 30,
+    "weight": 1.75,
+    "tagIds": ["t01", "t04", "t05"],
+    "expansionIds": [],
+    "description": "두 여신을 깃들여 상대를 공격해 벚꽃 결투에서 승리하자"
+  },
+  {
+    "id": "g002",
+    "title": "아컴호러 카드게임",
+    "titleEn": "Arkham Horror Card Game",
+    "imageUrl": "/images/Arkham-Card.jpg",
+    "location": "B-3",
+    "minPlayers": 1,
+    "maxPlayers": 4,
+    "playtimeMin": 90,
+    "playtimeMax": 120,
+    "weight": 2.9,
+    "tagIds": ["t02", "t04", "t07"],
+    "expansionIds": ["g003"],
+    "description": "조사자들이 힘을 합쳐 아컴의 공포를 파헤쳐라"
+  },
+  {
+    "id": "g003",
+    "title": "아컴호러 카드게임 수몰된 도시",
+    "titleEn": "Arkham Horror Card Game The Drowned City",
+    "imageUrl": "/images/Drowned-City.jpg",
+    "location": "B-3",
+    "minPlayers": 1,
+    "maxPlayers": 4,
+    "playtimeMin": 90,
+    "playtimeMax": 120,
+    "weight": 2.9,
+    "tagIds": ["t02", "t03", "t04", "t05", "t07"],
+    "expansionIds": [],
+    "description": "아컴호러 카드게임의 11번째 확장"
+  }
+]
