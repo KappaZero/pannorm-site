@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { Search } from 'lucide-react';
 import CardGrid from '../components/CardGrid';
 import TagFilterList from '../components/TagFilterList';
 import { filterGames } from '../lib/filterGames';
@@ -28,13 +29,16 @@ export default function Home() {
       <header className="flex items-center gap-3 p-4 border-b border-gray-200">
         <h1 className="text-lg font-semibold shrink-0">판놀음</h1>
 
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="게임 이름으로 검색"
-          className="flex-1 px-3 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-gray-300"
-        />
+        <div className="relative flex-1">
+          <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="게임 이름으로 검색"
+            className="w-full pl-9 pr-3 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-gray-300"
+          />
+        </div>
 
         <button
           onClick={() => setFilterOpen(true)}
