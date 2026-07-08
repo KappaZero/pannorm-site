@@ -20,7 +20,7 @@ export default function TagFilterList({
             className={`px-3 py-1.5 rounded-full text-sm border transition-colors ${
               selected
                 ? 'bg-blue-600 border-blue-600 text-white'
-                : 'bg-white border-gray-300 text-gray-600 hover:border-gray-400'
+                : 'bg-white dark:bg-transparent border-gray-300 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:border-gray-400 dark:hover:border-gray-500'
             }`}
           >
             {tag.name}

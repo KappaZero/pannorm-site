@@ -8,8 +8,8 @@ export default function CardGrid({ games, tags }: { games: Game[]; tags: Tag[] }
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {games.map((game) => (
-        <GameCard key={game.id} game={game} tags={tags} />
+      {games.map((game, index) => (
+        <GameCard key={game.id} game={game} tags={tags} index={index} />
       ))}
     </div>
   );

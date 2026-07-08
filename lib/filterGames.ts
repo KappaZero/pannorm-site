@@ -59,3 +59,22 @@ export function filterGames(
     return true;
   });
 }
+
+export function sortGames(games: Game[], sortBy: string) {
+  const sorted = [...games];
+
+  switch (sortBy) {
+    case 'name':
+      return sorted.sort((a, b) => a.title.localeCompare(b.title, 'ko'));
+    case 'weight-asc':
+      return sorted.sort((a, b) => a.weight - b.weight);
+    case 'weight-desc':
+      return sorted.sort((a, b) => b.weight - a.weight);
+    case 'playtime-asc':
+      return sorted.sort((a, b) => a.playtimeMin - b.playtimeMin);
+    case 'playtime-desc':
+      return sorted.sort((a, b) => b.playtimeMin - a.playtimeMin);
+    default:
+      return sorted;
+  }
+}
