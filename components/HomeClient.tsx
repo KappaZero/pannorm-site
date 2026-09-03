@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import { Search, Filter, ArrowUpDown, X } from 'lucide-react';
 import CardGrid from './CardGrid';
 import TagFilterList from './TagFilterList';
@@ -9,14 +10,41 @@ import { filterGames, sortGames } from '../lib/filterGames';
 import { Game, Tag } from '../lib/types';
 
 export default function HomeClient({ games, tags }: { games: Game[]; tags: Tag[] }) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
   const [filterOpen, setFilterOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedTagIds, setSelectedTagIds] = useState<string[]>([]);
-  const [players, setPlayers] = useState(0);
-  const [playtimeMax, setPlaytimeMax] = useState(0);
-  const [playtimeMode, setPlaytimeMode] = useState<'min' | 'max'>('min');
-  const [expansionFilter, setExpansionFilter] = useState<'all' | 'base' | 'expansion'>('all');
-  const [sortBy, setSortBy] = useState('name');
+  const [searchQuery, setSearchQuery] = useState(() => searchParams.get('q') || '');
+  const [selectedTagIds, setSelectedTagIds] = useState<string[]>(() => {
+    const t = searchParams.get('tags');
+    return t ? t.split(',') : [];
+  });
+  const [players, setPlayers] = useState(() => Number(searchParams.get('players')) || 0);
+  const [playtimeMax, setPlaytimeMax] = useState(() => Number(searchParams.get('playtime')) || 0);
+  const [playtimeMode, setPlaytimeMode] = useState<'min' | 'max'>(() =>
+    searchParams.get('mode') === 'max' ? 'max' : 'min'
+  );
+  const [expansionFilter, setExpansionFilter] = useState<'all' | 'base' | 'expansion'>(() => {
+    const e = searchParams.get('exp');
+    return e === 'base' || e === 'expansion' ? e : 'all';
+  });
+  const [sortBy, setSortBy] = useState(() => searchParams.get('sort') || 'name');
+
+  // 필터 상태가 바뀔 때마다 URL에 반영
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (searchQuery) params.set('q', searchQuery);
+    if (selectedTagIds.length > 0) params.set('tags', selectedTagIds.join(','));
+    if (players > 0) params.set('players', String(players));
+    if (playtimeMax > 0) params.set('playtime', String(playtimeMax));
+    if (playtimeMode !== 'min') params.set('mode', playtimeMode);
+    if (expansionFilter !== 'all') params.set('exp', expansionFilter);
+    if (sortBy !== 'name') params.set('sort', sortBy);
+
+    const query = params.toString();
+    router.replace(query ? `${pathname}?${query}` : pathname, { scroll: false });
+  }, [searchQuery, selectedTagIds, players, playtimeMax, playtimeMode, expansionFilter, sortBy, pathname, router]);
 
   function toggleTag(id: string) {
     setSelectedTagIds((prev) =>
