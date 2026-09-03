@@ -117,7 +117,10 @@ export default function HomeClient({ games, tags }: { games: Game[]; tags: Tag[]
   return (
     <div className="min-h-screen">
       <header className="flex items-center gap-3 p-4 border-b border-gray-200 dark:border-gray-800">
-        <button onClick={goHome} className="text-lg font-semibold shrink-0">
+        <button
+          onClick={goHome}
+          className="text-lg font-semibold shrink-0 px-2 py-1 -mx-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+        >
           판놀음
         </button>
 
