@@ -31,7 +31,6 @@ export default function HomeClient({ games, tags }: { games: Game[]; tags: Tag[]
   });
   const [sortBy, setSortBy] = useState(() => searchParams.get('sort') || 'name');
 
-  // 필터 상태가 바뀔 때마다 URL에 반영
   useEffect(() => {
     const params = new URLSearchParams();
     if (searchQuery) params.set('q', searchQuery);
@@ -58,6 +57,17 @@ export default function HomeClient({ games, tags }: { games: Game[]; tags: Tag[]
     setPlayers(0);
     setPlaytimeMax(0);
     setExpansionFilter('all');
+  }
+
+  function goHome() {
+    setSearchQuery('');
+    setSelectedTagIds([]);
+    setPlayers(0);
+    setPlaytimeMax(0);
+    setPlaytimeMode('min');
+    setExpansionFilter('all');
+    setSortBy('name');
+    setFilterOpen(false);
   }
 
   const filteredGames = filterGames(
@@ -107,7 +117,9 @@ export default function HomeClient({ games, tags }: { games: Game[]; tags: Tag[]
   return (
     <div className="min-h-screen">
       <header className="flex items-center gap-3 p-4 border-b border-gray-200 dark:border-gray-800">
-        <h1 className="text-lg font-semibold shrink-0">판놀음</h1>
+        <button onClick={goHome} className="text-lg font-semibold shrink-0">
+          판놀음
+        </button>
 
         <div className="relative flex-1">
           <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
