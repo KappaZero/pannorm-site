@@ -156,6 +156,7 @@ export default function HomeClient({ games, tags }: { games: Game[]; tags: Tag[]
             className="text-sm border border-gray-300 dark:border-gray-700 bg-transparent rounded-lg px-2 py-1.5"
           >
             <option value="name">이름순</option>
+            <option value="location">서가 순서</option>
             <option value="weight-asc">난이도 낮은순</option>
             <option value="weight-desc">난이도 높은순</option>
             <option value="playtime-asc">플레이타임 짧은순</option>

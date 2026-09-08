@@ -66,6 +66,10 @@ export function sortGames(games: Game[], sortBy: string) {
   switch (sortBy) {
     case 'name':
       return sorted.sort((a, b) => a.title.localeCompare(b.title, 'ko'));
+    case 'location':
+      return sorted.sort((a, b) =>
+        a.location.localeCompare(b.location, 'ko', { numeric: true })
+      );
     case 'weight-asc':
       return sorted.sort((a, b) => a.weight - b.weight);
     case 'weight-desc':
